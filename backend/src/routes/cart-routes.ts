@@ -51,6 +51,19 @@ router.post('/', createCart);
  *         schema:
  *           type: string
  *         description: The user id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: string
+ *               quantity:
+ *                 type: number
+ *               price:
+ *                 type: number
  *     responses:
  *       200:
  *         description: A cart
