@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { cartService } from '../services/cart-services';
 import mongoose from 'mongoose';
+import { productService } from '../services/product-service';
 
 export const createCart = async (
   req: Request,
@@ -25,8 +26,15 @@ export const editCart = async (req: Request, res: Response): Promise<void> => {
   }
 
   const userId = new mongoose.Types.ObjectId(id);
+  const findProductId = new mongoose.Types.ObjectId(productId);
 
   try {
+    const hasProduct = await productService.getProduct(findProductId);
+
+    if (!hasProduct) {
+      res.status(404).json({ error: 'Product not found' });
+    }
+
     const product = await cartService.editCart({
       userId,
       productId,
@@ -55,7 +63,7 @@ export const removeItemFromCart = async (
   const userId = new mongoose.Types.ObjectId(id);
 
   try {
-    const product = await cartService.removeItemFromCart({userId, productId});
+    const product = await cartService.removeItemFromCart({ userId, productId });
     res.status(201).json(product);
   } catch (err) {
     const error = err as Error;
