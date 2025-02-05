@@ -5,6 +5,7 @@ import setupSwagger from './swagger';
 import productRoutes from './routes/product-routes';
 import cartRoutes from './routes/cart-routes';
 import statusRoute from './routes/status-route';
+import usersRoutes from './routes/users-route';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/api/status', statusRoute);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/users', usersRoutes);
 
 setupSwagger(app);
 
