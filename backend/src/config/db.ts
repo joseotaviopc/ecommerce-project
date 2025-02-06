@@ -6,7 +6,10 @@ dotenv.config();
 const connectDB = async (): Promise<void> => {
   try {
     mongoose.set('debug', (collectionName, methodName, ...methodArgs) => {
-      console.log(`[${new Date().toISOString()}] ${collectionName}.${methodName}`, methodArgs);
+      console.log(
+        `[${new Date().toISOString()}] ${collectionName}.${methodName}`,
+        methodArgs,
+      );
     });
 
     await mongoose.connect(process.env.MONGODB_URI!);

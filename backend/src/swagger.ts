@@ -6,7 +6,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Meu Servidor API',
+      title: 'Ecommerce API',
       version: '1.0.0',
     },
   },
