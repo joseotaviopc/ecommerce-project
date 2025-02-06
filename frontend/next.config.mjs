@@ -4,8 +4,8 @@ const nextConfig = {
     remotePatterns: [
       { hostname: "picsum.photos" },
       { hostname: "loremflickr.com" },
-    ]
-  }
+    ],
+  },
 };
 
 export default nextConfig;
