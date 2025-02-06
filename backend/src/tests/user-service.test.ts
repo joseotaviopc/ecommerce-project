@@ -8,16 +8,15 @@ dotenv.config();
 
 describe('User Service', () => {
   beforeAll(async () => {
-    console.log(process.env.MONGODB_URI);
     try {
       await mongoose.connect(process.env.MONGODB_URI!);
-      console.log('Connected to MongoDB');
     } catch (error) {
       console.error('Error connecting to MongoDB', error);
     }
   });
 
   afterAll(async () => {
+    await mongoose.connection.db?.dropDatabase();
     await mongoose.connection.close();
   });
 

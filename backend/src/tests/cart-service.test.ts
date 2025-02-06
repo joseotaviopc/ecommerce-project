@@ -2,7 +2,6 @@ import { afterAll, beforeAll, afterEach, describe, expect, it } from 'vitest';
 import { cartService } from '../services/cart-services';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import Cart from '../models/cart-model';
 import Product from '../models/product-model';
 
 dotenv.config();
@@ -25,19 +24,18 @@ describe('Cart Service', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       });
-      console.log('Connected to MongoDB');
     } catch (error) {
       console.error('Error connecting to MongoDB', error);
     }
   });
 
   afterAll(async () => {
+    await mongoose.connection.db?.dropDatabase();
     await mongoose.connection.close();
   });
 
   afterEach(async () => {
-    await Cart.deleteMany({});
-    // await Product.deleteMany({});
+    await mongoose.connection.db?.dropDatabase();
   });
 
   it('should create a new cart', async () => {

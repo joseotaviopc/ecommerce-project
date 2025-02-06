@@ -21,14 +21,13 @@ describe('Product Service', () => {
   beforeAll(async () => {
     try {
       await mongoose.connect(process.env.MONGODB_URI!);
-      console.log('Connected to MongoDB');
     } catch (error) {
       console.error('Error connecting to MongoDB', error);
     }
   });
 
   afterAll(async () => {
-    await Product.deleteMany({});
+    await mongoose.connection.db?.dropDatabase();
     await mongoose.connection.close();
   });
 
@@ -40,8 +39,6 @@ describe('Product Service', () => {
     await Product.create(TEST_PRODUCT);
 
     const products = await productService.getAllProducts();
-
-    console.log(products.length);
 
     expect(products).toHaveLength(products.length);
     expect(products[0]).toHaveProperty('_id', PRODUCT_ID);
