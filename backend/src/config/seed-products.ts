@@ -12,13 +12,21 @@ export const seedProducts = async () => {
     await User.deleteMany({});
     await Cart.deleteMany({});
 
-    const products = Array.from({ length: 50 }, () => ({
+    const products = Array.from({ length: 10 }, () => ({
       name: faker.commerce.productName(),
       description: faker.commerce.productDescription(),
       price: parseFloat(faker.commerce.price()),
       stock: faker.number.int({ min: 0, max: 100 }),
       category: faker.commerce.department(),
-      images: [faker.image.url(), faker.image.url()],
+      images: [
+        faker.image.urlPicsumPhotos({
+          height: 300,
+          width: 300,
+          grayscale: false,
+          blur: 0,
+        }),
+        faker.image.urlLoremFlickr({ width: 300, height: 300 }),
+      ],
       createdAt: new Date(),
       updatedAt: new Date(),
     }));
