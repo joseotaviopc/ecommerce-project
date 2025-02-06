@@ -9,12 +9,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 
 export default function CartPage() {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleQuantityChange = (productId: number, newQuantity: number) => {
+    updateQuantity(productId, newQuantity);
+  };
 
   return (
     <div>
@@ -27,26 +33,70 @@ export default function CartPage() {
           <CardContent>
             {cart.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 className="flex justify-between items-center py-4"
               >
                 <div>
                   <h2 className="text-xl font-semibold">{item.name}</h2>
                   <p className="text-gray-600">Quantity: {item.quantity}</p>
-                  <p>${(item.price * item.quantity).toFixed(2)}</p>
+                  <p>
+                    {(item.price * item.quantity).toLocaleString("pt-br", {
+                      currency: "BRL",
+                      style: "currency",
+                    })}
+                  </p>
                 </div>
-                <Button
-                  variant="destructive"
-                  onClick={() => removeFromCart(item.id)}
-                >
-                  Remove
-                </Button>
+                <div className="flex items-center space-x-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() =>
+                      handleQuantityChange(item._id, item.quantity - 1)}
+                    disabled={item.quantity <= 1}
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <Input
+                    type="number"
+                    min="1"
+                    value={item.quantity}
+                    onChange={(e) =>
+                      handleQuantityChange(
+                        item._id,
+                        Number.parseInt(e.target.value) || 1,
+                      )}
+                    className="w-16 text-center"
+                  />
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() =>
+                      handleQuantityChange(item._id, item.quantity + 1)}
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    size="icon"
+                    onClick={() => removeFromCart(item._id)}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             ))}
             <Separator className="my-4" />
           </CardContent>
           <CardFooter>
-            <div className="text-xl font-bold">Total: ${total.toFixed(2)}</div>
+            <div className="text-xl font-bold mr-4">
+              Total: {total.toLocaleString("pt-br", {
+                currency: "BRL",
+                style: "currency",
+              })}
+            </div>
+            <Button variant="destructive" onClick={clearCart}>
+              <ShoppingCart className="mr-2 h-4 w-4" /> Clear Cart
+            </Button>
           </CardFooter>
         </Card>
       )}
