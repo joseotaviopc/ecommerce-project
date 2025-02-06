@@ -44,14 +44,33 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         <CardTitle>{product.name}</CardTitle>
       </CardHeader>
       <div className="flex space-x-8 justify-center">
-        <Image src={product.images[0]} alt={product.name} width={300} height={300} className="rounded-2xl w-80 h-80 object-cover"/>
-        <Image src={product.images[1]} alt={product.name} width={300} height={300} className="rounded-2xl w-80 h-80 object-cover"/>
+        <Image
+          src={product.images[0]}
+          alt={product.name}
+          width={300}
+          height={300}
+          className="rounded-2xl w-80 h-80 object-cover"
+        />
+        <Image
+          src={product.images[1]}
+          alt={product.name}
+          width={300}
+          height={300}
+          className="rounded-2xl w-80 h-80 object-cover"
+        />
       </div>
       <CardContent>
-        <p className="text-2xl font-bold mb-4">{product.price.toLocaleString('pt-br',{
-              currency: 'BRL',
-              style: 'currency'
-            })}</p>
+        <div className="flex items-center gap-8 mb-4">
+          <p className="text-2xl font-bold">
+            {product.price.toLocaleString("pt-br", {
+              currency: "BRL",
+              style: "currency",
+            })}
+          </p>
+          {product.stock === 0
+            ? <p className="text-sm line-through">Esgotado</p>
+            : <p className="text-sm">Disponíveis: {product.stock}</p>}
+        </div>
         <p>{product.description}</p>
       </CardContent>
       <CardFooter>
