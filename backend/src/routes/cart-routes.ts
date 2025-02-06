@@ -4,6 +4,11 @@ import {
   editCart,
   removeItemFromCart,
 } from '../controllers/cart-controller';
+import { validate } from '../middleware/validate';
+import {
+  cartSchema,
+  removeItemFromCartSchema,
+} from '../validators/cart-validator';
 
 const router = express.Router();
 
@@ -85,7 +90,7 @@ router.post('/', createCart);
  *                 imageUrl:
  *                   type: string
  */
-router.patch('/:id', editCart);
+router.patch('/:id', validate(cartSchema), editCart);
 
 /**
  * @swagger
@@ -104,5 +109,5 @@ router.patch('/:id', editCart);
  *        200:
  *          description: The cart with the item removed
  */
-router.delete('/:id', removeItemFromCart);
+router.delete('/:id', validate(removeItemFromCartSchema), removeItemFromCart);
 export default router;
