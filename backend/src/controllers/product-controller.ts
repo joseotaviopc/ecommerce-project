@@ -21,8 +21,8 @@ export const getProduct = async (
 ): Promise<void> => {
   const { id } = req.params;
 
-  if (!id) {
-    res.status(400).json({ error: 'Missing parameters' });
+  if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+    res.status(400).json({ error: 'Missing or invalid parameters' });
     return;
   }
 
