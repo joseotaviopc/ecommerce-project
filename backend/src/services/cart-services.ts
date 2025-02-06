@@ -18,7 +18,7 @@ type EditCartDTO = {
 };
 
 const editCart = async ({
-  userId = USER_ID,
+  userId,
   productId,
   quantity,
   price,
@@ -52,7 +52,7 @@ type RemoveCartDTO = {
 };
 
 const removeItemFromCart = async ({
-  userId = USER_ID,
+  userId,
   productId,
 }: RemoveCartDTO): Promise<ICart | null> => {
   const cart = await Cart.findOne({ userId });

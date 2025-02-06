@@ -1,12 +1,14 @@
 import Product, { IProduct } from '../models/product-model';
 
-const getAllProducts = async (): Promise<IProduct[]> => {
+type ProductResponse = Pick<IProduct, '_id' | 'name' | 'price'>;
+
+const getAllProducts = async (): Promise<ProductResponse[]> => {
   return await Product.find();
 };
 
 const getProduct = async (
   productId: Pick<IProduct, '_id'>,
-): Promise<IProduct | null> => {
+): Promise<ProductResponse | null> => {
   return await Product.findById(productId);
 };
 
