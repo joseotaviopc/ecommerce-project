@@ -8,7 +8,7 @@ const connectDB = async (): Promise<void> => {
     mongoose.set('debug', (collectionName, methodName, ...methodArgs) => {
       console.log(
         `[${new Date().toISOString()}] ${collectionName}.${methodName}`,
-        methodArgs,
+        // methodArgs,
       );
     });
 
