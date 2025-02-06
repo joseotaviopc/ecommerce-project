@@ -8,7 +8,7 @@ const router = express.Router();
  * /api/products:
  *   get:
  *     summary: Retrieve a list of products
- *     tags: [Products]
+ *     tags: [Product]
  *     responses:
  *       200:
  *         description: A list of products
@@ -32,14 +32,14 @@ const router = express.Router();
  *                   imageUrl:
  *                     type: string
  */
-router.get('/', getAllProducts);
+router.get('/all', getAllProducts);
 
 /**
  * @swagger
  * /api/products/{id}:
  *   get:
  *     summary: Retrieve a product by id
- *     tags: [Products]
+ *     tags: [Product]
  *     parameters:
  *       - in: path
  *         name: id

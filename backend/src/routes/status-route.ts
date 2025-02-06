@@ -22,6 +22,6 @@ const router = express.Router();
  *                   example: API is running...
  */
 router.get('/', (req, res) => {
-    res.json({ message: 'API is running...' });
-  });
+  res.json({ message: 'API is running...' });
+});
 export default router;
