@@ -5,7 +5,11 @@ export type Product = {
   category: string;
   price: number;
   description: string;
-  images: string[]
+  images: string[];
+  createdAt: Date;
 };
 
 export type CartItem = Product & { quantity: number };
+
+export type SortOption = "price" | "name" | "createdAt";
+export type SortDirection = "asc" | "desc";
