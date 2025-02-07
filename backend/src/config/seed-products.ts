@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { fakerPT_BR as faker } from '@faker-js/faker';
 import Product from '../models/product-model';
 import User from '../models/user-model';
 import Cart from '../models/cart-model';
@@ -12,7 +12,7 @@ export const seedProducts = async () => {
     await User.deleteMany({});
     await Cart.deleteMany({});
 
-    const products = Array.from({ length: 10 }, () => ({
+    const products = Array.from({ length: 20 }, () => ({
       name: faker.commerce.productName(),
       description: faker.commerce.productDescription(),
       price: parseFloat(faker.commerce.price()),
