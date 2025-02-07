@@ -11,6 +11,10 @@
     "test": "npx vitest",
     "test:cov": "npx vitest --coverage",
     "build": "tsc",
+    "build:prod": "npm run build:prod-image && npm run build:prod-tag && npm run build:prod-upload",
+    "build:prod-image": "docker build --platform linux/amd64 -t eco-back:latest  .",
+    "build:prod-tag": "docker tag eco-back:latest joseotaviocarvalho/eco-back:latest",
+    "build:prod-upload": "docker push joseotaviocarvalho/eco-back:latest",
     "start": "node dist/server.js"
   },
   "keywords": [],
