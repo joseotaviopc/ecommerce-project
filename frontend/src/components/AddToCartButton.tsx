@@ -6,13 +6,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useUser } from "@/context/UserContext";
 
 export default function AddToCartButton({ product }: { product: Product }) {
   const { addToCart, isInCart, updateQuantity } = useCart();
+  const { user } = useUser();
   const [quantity, setQuantity] = useState(1);
   const { toast } = useToast();
 
   const handleAddToCart = () => {
+    if (!user) {
+      toast({
+        variant: "destructive",
+        title: "Login necessário",
+        description: "Por favor, faça login para adicionar itens ao seu carrinho.",
+      });
+      return;
+    }
     if (isInCart(product._id)) {
       updateQuantity(product._id, quantity);
       toast({
