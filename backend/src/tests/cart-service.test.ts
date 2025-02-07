@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { cartService } from '../services/cart-services';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
