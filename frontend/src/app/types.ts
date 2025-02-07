@@ -10,6 +10,8 @@ export type Product = {
 };
 
 export type CartItem = Product & { quantity: number };
-
+export type User = {
+  _id: number;
+}
 export type SortOption = "price" | "name" | "createdAt";
 export type SortDirection = "asc" | "desc";
