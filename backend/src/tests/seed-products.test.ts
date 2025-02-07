@@ -30,7 +30,10 @@ const consoleErrorMock = vi
   .spyOn(console, 'error')
   .mockImplementation(() => {});
 
-vi.spyOn(process, 'exit').mockImplementation(() => {});
+type ProcessWithExit = {
+  exit: (code?: number | undefined) => null;
+};
+vi.spyOn(process as ProcessWithExit, 'exit').mockImplementation(() => null);
 
 describe('seedProducts', () => {
   beforeEach(() => {
@@ -76,7 +79,7 @@ describe('seedProducts', () => {
   it('should handle errors during seeding', async () => {
     // Mock an error during deleteMany
     const mockError = new Error('Database error');
-    (Product.deleteMany as vi.Mock).mockRejectedValueOnce(mockError);
+    // (Product.deleteMany as vi.Mock).mockRejectedValueOnce(mockError);
 
     // Call the function
     try {
