@@ -1,18 +1,14 @@
-import dotenv from 'dotenv';
 import app from './app';
 import { seedProducts } from './config/seed-products';
-
-dotenv.config();
-
-const PORT = process.env.PORT || 3000;
+import { envs } from './config/env';
 
 const startServer = async () => {
   try {
-    await seedProducts();
-
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+    app.listen(envs.PORT, () => {
+      console.log(`Server running on port ${envs.PORT}`);
     });
+
+    await seedProducts();
   } catch (error) {
     console.error('Failed to start the server:', error);
   }
