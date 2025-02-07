@@ -1,6 +1,6 @@
-import dotenv from "dotenv";
-import app from "./src/app";
-import { seedProducts } from "./src/config/seed-products";
+import dotenv from 'dotenv';
+import app from './app';
+import { seedProducts } from './config/seed-products';
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ const startServer = async () => {
       console.log(`Server running on port ${PORT}`);
     });
   } catch (error) {
-    console.error("Failed to start the server:", error);
+    console.error('Failed to start the server:', error);
   }
 };
 

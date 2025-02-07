@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "lint": "tsc --noEmit",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
     "test": "npx vitest",
-    "test:cov": "npx vitest --coverage"
+    "test:cov": "npx vitest --coverage",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
