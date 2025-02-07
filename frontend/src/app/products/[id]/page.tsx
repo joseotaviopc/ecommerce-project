@@ -13,7 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
 const fetchProductById = async (id: string): Promise<Product> => {
-  const response = await fetch(`http://localhost:3000/api/products/${id}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_PROD}/api/products/${id}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }

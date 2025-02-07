@@ -24,7 +24,7 @@ import { useEffect, useState } from "react";
 import SortControls from "./SortControls";
 
 const fetchProducts = async (): Promise<Product[]> => {
-  const response = await fetch("http://localhost:3000/api/products/all");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_PROD}/api/products/all`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -132,7 +132,7 @@ export default function ProductList() {
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button variant="outline" asChild disabled={product.stock === 0}>
-                <Link href={`/products/${product._id}`}>View Details</Link>
+                <Link href={`/products/${product._id}`}>Detalhes</Link>
               </Button>
               <AddToCartButton product={product} />
             </CardFooter>
