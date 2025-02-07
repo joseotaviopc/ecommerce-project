@@ -14,6 +14,7 @@ import dotenv from 'dotenv';
 import { getAllProducts, getProduct } from '../controllers/product-controller';
 import { productService } from '../services/product-service';
 import Product from '../models/product-model';
+import { envs } from '../config/env';
 
 dotenv.config();
 
@@ -24,7 +25,7 @@ app.get('/products/:id', getProduct);
 
 describe('Product Controller', () => {
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI!);
+    await mongoose.connect(envs.MONGODB_URI!);
   });
 
   afterAll(async () => {

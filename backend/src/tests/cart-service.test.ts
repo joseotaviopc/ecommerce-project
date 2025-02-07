@@ -3,6 +3,7 @@ import { cartService } from '../services/cart-services';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Product from '../models/product-model';
+import { envs } from '../config/env';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ describe('Cart Service', () => {
 
   beforeAll(async () => {
     try {
-      await mongoose.connect(process.env.MONGODB_URI!);
+      await mongoose.connect(envs.MONGODB_URI!);
       await Product.create({
         _id: PRODUCT_ID,
         name: 'product name',

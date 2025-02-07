@@ -3,6 +3,7 @@ import { productService } from '../services/product-service';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Product, { IProduct } from '../models/product-model';
+import { envs } from '../config/env';
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ describe('Product Service', () => {
 
   beforeAll(async () => {
     try {
-      await mongoose.connect(process.env.MONGODB_URI!);
+      await mongoose.connect(envs.MONGODB_URI!);
     } catch (error) {
       console.error('Error connecting to MongoDB', error);
     }

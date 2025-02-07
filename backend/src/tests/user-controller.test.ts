@@ -13,6 +13,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { createUser, getUsers } from '../controllers/user-controller';
 import { userService } from '../services/user-service';
+import { envs } from '../config/env';
 
 dotenv.config();
 
@@ -23,7 +24,7 @@ app.get('/users', getUsers);
 
 describe('User Controller', () => {
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI!);
+    await mongoose.connect(envs.MONGODB_URI!);
   });
 
   afterAll(async () => {
