@@ -7,7 +7,6 @@ import {
 } from '../controllers/cart-controller';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-// Mock the cartService and productService to prevent actual async operations
 vi.mock('../services/cart-services', () => ({
   cartService: {
     createCart: vi
@@ -83,7 +82,6 @@ describe('Cart Controller', () => {
 
     await editCart(req as Request, res as Response);
 
-    // Check that the service was called and proper response was given
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith({ success: true });
   });
