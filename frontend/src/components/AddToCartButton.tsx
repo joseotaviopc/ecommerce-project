@@ -40,7 +40,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
         className="w-20"
       />
       <Button onClick={handleAddToCart}>
-        {isInCart(product._id) ? "Update Cart" : "Add to Cart"}
+        {isInCart(product._id) ? "Atualizar" : "Adicionar"}
       </Button>
     </div>
   );

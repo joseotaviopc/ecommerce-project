@@ -40,19 +40,19 @@ export default function SortControls({ onSort }: SortControlsProps) {
         variant={sortState.option === "price" ? "default" : "outline"}
         onClick={() => handleSort("price")}
       >
-        Price {getSortIcon("price")}
+        Preço {getSortIcon("price")}
       </Button>
       <Button
         variant={sortState.option === "name" ? "default" : "outline"}
         onClick={() => handleSort("name")}
       >
-        Name {getSortIcon("name")}
+        Nome {getSortIcon("name")}
       </Button>
       <Button
         variant={sortState.option === "createdAt" ? "default" : "outline"}
         onClick={() => handleSort("createdAt")}
       >
-        Date Added {getSortIcon("createdAt")}
+        Adicionado {getSortIcon("createdAt")}
       </Button>
     </div>
   );

@@ -24,11 +24,11 @@ export default function CartPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
-      {cart.length === 0 ? <p>Your cart is empty.</p> : (
+      <h1 className="text-3xl font-bold mb-6">Seu Carrinho</h1>
+      {cart.length === 0 ? <p>Seu carrinho está vazio.</p> : (
         <Card>
           <CardHeader>
-            <CardTitle>Your Items</CardTitle>
+            <CardTitle>Seus items</CardTitle>
           </CardHeader>
           <CardContent>
             {cart.map((item) => (
@@ -95,7 +95,7 @@ export default function CartPage() {
               })}
             </div>
             <Button variant="destructive" onClick={clearCart}>
-              <ShoppingCart className="mr-2 h-4 w-4" /> Clear Cart
+              <ShoppingCart className="mr-2 h-4 w-4" /> Limpar
             </Button>
           </CardFooter>
         </Card>
