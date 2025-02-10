@@ -1,0 +1,16 @@
+node_modules
+package*
+
+backend/node_modules
+backend/db_data
+backend/.env*
+backend/coverage
+backend/dist
+backend/package-lock*
+
+frontend/node_modules
+frontend/.env*
+frontend/package-lock*
+
+.DS_Store
+.vscode
